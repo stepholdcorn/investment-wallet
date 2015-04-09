@@ -17,6 +17,16 @@ class InvestmentsController < ApplicationController
     @investment = Investment.find(params[:id])
   end
 
+  def edit
+    @investment = Investment.find(params[:id])
+  end
+
+  def update
+    @investment = Investment.find(params[:id])
+    @investment.update(investment_params)
+    redirect_to investments_path
+  end
+
   private
 
   def investment_params

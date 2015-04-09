@@ -1,6 +1,6 @@
 <% if @investments.any? %>
   <% @investments.each do |investment| %>
-    <h2><%= investment.name %></h2>
+    <h2><%= link_to investment.name, investment_path(investment) %></h2>
   <% end %>
 <% else %>
   Your wallet is empty

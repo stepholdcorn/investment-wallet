@@ -34,4 +34,15 @@ feature 'tickers' do
     end
   end
 
+  context 'viewing individual tickers' do
+    let!(:aapl){Investment.create(name: 'AAPL', quantity: '100')}
+
+    scenario 'allows a user to view the ticker in more detail' do
+      visit '/investments'
+      click_link 'AAPL'
+      expect(page).to have_content '100'
+      expect(current_path).to eq "/investments/#{aapl.id}"
+    end
+  end
+
 end

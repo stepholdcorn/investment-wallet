@@ -13,6 +13,10 @@ class InvestmentsController < ApplicationController
     redirect_to investments_path
   end
 
+  def show
+    @investment = Investment.find(params[:id])
+  end
+
   private
 
   def investment_params

@@ -1,3 +1,12 @@
+<% if @investment.errors.any? %>
+  <h2 id="errors"><%= pluralize(@investment.errors.count, 'error') %> prohibited this ticker being added to your wallet:</h2>
+  <ul>
+    <% @investment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for @investment do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>

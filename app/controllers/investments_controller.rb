@@ -9,8 +9,12 @@ class InvestmentsController < ApplicationController
   end
 
   def create
-    Investment.create(investment_params)
-    redirect_to investments_path
+    @investment = Investment.new(investment_params)
+    if @investment.save
+      redirect_to investments_path
+    else
+      render 'new'
+    end
   end
 
   def show

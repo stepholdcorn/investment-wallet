@@ -32,6 +32,19 @@ feature 'investments' do
     end
   end
 
+  context 'an invalid investment' do
+    before { Investment.create(name: 'AAPL', quantity: '100') }
+    
+    scenario 'a duplicate ticker displays an error' do
+      visit '/investments'
+      click_link 'Add ticker'
+      fill_in 'Name', with: 'AAPL'
+      fill_in 'Quantity', with: '100'
+      click_button 'Add'
+      expect(page).to have_content 'error'
+    end
+  end
+
   context 'viewing individual investments' do
     let!(:aapl){ Investment.create(name: 'AAPL', quantity: '100') }
 

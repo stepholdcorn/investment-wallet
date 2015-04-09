@@ -3,9 +3,10 @@
     <h2><%= link_to investment.name, investment_path(investment) %></h2>
     <h3><%= investment.quantity %></h3>
     <h3><%= link_to 'Edit', edit_investment_path(investment) %>
+    <h3><%= link_to 'Remove', investment_path(investment), method: :delete %></h3>
   <% end %>
 <% else %>
   Your wallet is empty
 <% end %>
 
-<%= link_to 'Add ticker', new_investment_path %>
+<h2><%= link_to 'Add ticker', new_investment_path %></h2>

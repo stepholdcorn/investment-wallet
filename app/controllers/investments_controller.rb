@@ -27,6 +27,13 @@ class InvestmentsController < ApplicationController
     redirect_to investments_path
   end
 
+  def destroy
+    @investment = Investment.find(params[:id])
+    @investment.destroy
+    flash[:notice] = 'Investment deleted successfully'
+    redirect_to investments_path
+  end
+
   private
 
   def investment_params

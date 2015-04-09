@@ -56,4 +56,15 @@ feature 'investments' do
     end
   end
 
+  context 'deleting investments' do
+    before { Investment.create(name: 'AAPL', quantity: '100') }
+
+    scenario 'allows a user to delete an investment' do
+      visit '/investments'
+      click_link 'Remove'
+      expect(page).not_to have_content 'AAPL 100'
+      expect(page).to have_content 'Investment deleted successfully'
+    end
+  end
+
 end

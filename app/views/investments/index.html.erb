@@ -1,2 +1,9 @@
-Your wallet is empty
+<% if @investments.any? %>
+  <% @investments.each do |investment| %>
+    <h2><%= investment.name %></h2>
+  <% end %>
+<% else %>
+  Your wallet is empty
+<% end %>
+
 <button>Add ticker</button>

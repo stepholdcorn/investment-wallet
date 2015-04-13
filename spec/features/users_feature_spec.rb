@@ -12,13 +12,16 @@ context 'user not signed in and on the homepage' do
 
   it 'does not display a wallet' do
     user_sign_up('test@test.com', 'testtest', 'testtest')
-    visit '/'
-    click_link 'Add ticker'
-    fill_in 'Name', with: 'AAPL'
-    fill_in 'Quantity', with: '100'
-    click_button 'Add'
+    add_investment('AAPL', '100')
     click_link 'Sign out'
     expect(page).not_to have_content 'AAPL 100'
+    expect(page).not_to have_link 'Edit'
+    expect(page).not_to have_link 'Remove'
+  end
+
+  it 'does not allow a user to add a ticker' do
+    visit '/'
+    expect(page).not_to have_link 'Add ticker'
   end
 end
 

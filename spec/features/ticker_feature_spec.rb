@@ -21,10 +21,7 @@ feature 'investments' do
   context 'adding an investment' do
     scenario 'prompts user to fill in a form, then displays the new ticker on the index page' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
-      click_link 'Add ticker'
-      fill_in 'Name', with: 'AAPL'
-      fill_in 'Quantity', with: '100'
-      click_button 'Add'
+      add_investment('AAPL', 100)
       expect(page).to have_content 'AAPL 100'
       expect(current_path).to eq '/investments'
     end
@@ -35,10 +32,7 @@ feature 'investments' do
     
     scenario 'a duplicate ticker displays an error' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
-      click_link 'Add ticker'
-      fill_in 'Name', with: 'AAPL'
-      fill_in 'Quantity', with: '100'
-      click_button 'Add'
+      add_investment('AAPL', 100)
       expect(page).to have_content 'error'
     end
   end

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 feature 'investments' do
 
   context 'no investments have been added' do

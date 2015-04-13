@@ -9,6 +9,17 @@ context 'user not signed in and on the homepage' do
     visit '/'
     expect(page).not_to have_link 'Sign out'
   end
+
+  it 'does not display a wallet' do
+    user_sign_up('test@test.com', 'testtest', 'testtest')
+    visit '/'
+    click_link 'Add ticker'
+    fill_in 'Name', with: 'AAPL'
+    fill_in 'Quantity', with: '100'
+    click_button 'Add'
+    click_link 'Sign out'
+    expect(page).not_to have_content 'AAPL 100'
+  end
 end
 
 context 'user signed in and on the homepage' do

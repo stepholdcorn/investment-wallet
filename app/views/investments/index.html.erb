@@ -1,12 +1,16 @@
-<% if @investments.any? %>
-  <% @investments.each do |investment| %>
-    <h2><%= link_to investment.name, investment_path(investment) %></h2>
-    <h3><%= investment.quantity %></h3>
-    <h3><%= link_to 'Edit', edit_investment_path(investment) %>
-    <h3><%= link_to 'Remove', investment_path(investment), method: :delete %></h3>
+<% if user_signed_in? %>
+  <% if @investments.any? %>
+    <% @investments.each do |investment| %>
+      <h2><%= link_to investment.name, investment_path(investment) %></h2>
+      <h3><%= investment.quantity %></h3>
+      <h3><%= link_to 'Edit', edit_investment_path(investment) %>
+      <h3><%= link_to 'Remove', investment_path(investment), method: :delete %></h3>
+    <% end %>
+  <% else %>
+    Your wallet is empty
   <% end %>
-<% else %>
-  Your wallet is empty
-<% end %>
 
-<h2><%= link_to 'Add ticker', new_investment_path %></h2>
+  <h2><%= link_to 'Add ticker', new_investment_path %></h2>
+<% else %>
+  PLACEHOLDER
+<% end %>

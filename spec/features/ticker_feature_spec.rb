@@ -12,7 +12,7 @@ feature 'investments' do
     scenario 'prompts user to fill in a form, then displays the new ticker on the index page' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
       add_investment('AAPL', 100)
-      expect(page).to have_content 'AAPL 100'
+      expect(page).to have_content 'Apple Inc.'
       expect(current_path).to eq '/investments'
     end
   end
@@ -30,8 +30,8 @@ feature 'investments' do
     scenario 'allows a user to view the investment in more detail' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
       add_investment('AAPL', 100)
-      click_link 'AAPL'
-      expect(page).to have_content 'Investment: AAPL Quantity: 100'
+      click_link 'Apple Inc.'
+      expect(page).to have_content 'Apple Inc. AAPL NMS'
     end
   end
 
@@ -42,8 +42,8 @@ feature 'investments' do
       click_link 'Edit'
       fill_in 'Quantity', with: '250'
       click_button 'Update'
-      expect(page).to have_content 'AAPL 250'
-      expect(current_path).to eq '/investments'
+      click_link 'Apple Inc.'
+      expect(page).to have_content '250'
     end
   end
 
@@ -52,7 +52,7 @@ feature 'investments' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
       add_investment('AAPL', 100)
       click_link 'Remove'
-      expect(page).not_to have_content 'AAPL 100'
+      expect(page).not_to have_content 'Apple Inc.'
       expect(page).to have_content 'Investment deleted successfully'
     end
   end

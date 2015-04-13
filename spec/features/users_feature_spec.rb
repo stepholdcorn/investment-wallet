@@ -14,7 +14,7 @@ context 'user not signed in and on the homepage' do
     user_sign_up('test@test.com', 'testtest', 'testtest')
     add_investment('AAPL', 100)
     click_link 'Sign out'
-    expect(page).not_to have_content 'AAPL 100'
+    expect(page).not_to have_content 'Apple Inc.'
     expect(page).not_to have_link 'Edit'
     expect(page).not_to have_link 'Remove'
   end
@@ -42,6 +42,6 @@ context 'user signed in and on the homepage' do
     add_investment('AAPL', 100)
     click_link 'Sign out'
     user_sign_up('anothertest@test.com', 'testtest', 'testtest')
-    expect(page).not_to have_content 'AAPL 100'
+    expect(page).not_to have_content 'Apple Inc.'
   end
 end

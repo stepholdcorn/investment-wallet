@@ -5,6 +5,9 @@ class Investment < ActiveRecord::Base
   def created_by?(user)
     self.user == user
   end
+
+  def quote
+    quote = StockQuote::Stock.quote(self.name)
+  end
+
 end
-
-

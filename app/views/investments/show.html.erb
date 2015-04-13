@@ -1,2 +1,7 @@
-<h1>Investment: <%= @investment.name %></h1>
+<h1><%= @investment.quote.name %>
+<%= @investment.quote.symbol %>
+<%= @investment.quote.stock_exchange %></h1>
+<h2>Price: <%= @investment.quote.ask %></h2>
+<h2>Change: <%= @investment.quote.changein_percent %></h2>
+<h2>Holding value: <%= @investment.quote.ask * @investment.quantity %></h2>
 <h2>Quantity: <%= @investment.quantity %></h2>

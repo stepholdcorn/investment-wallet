@@ -3,7 +3,7 @@
     <% @investments.each do |investment| %>
       <% if investment.created_by? current_user %>
         <h2><%= link_to investment.quote.name, investment_path(investment) %>
-        <%= investment.quantity * investment.quote.ask %>
+        $<%= (investment.quantity * investment.quote.ask).round(2) %>
         <%= investment.quote.changein_percent %></h2>
         <h3><%= link_to 'Edit', edit_investment_path(investment) %>
         <%= link_to 'Remove', investment_path(investment), method: :delete %></h3>

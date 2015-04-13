@@ -1,5 +1,6 @@
 class Investment < ActiveRecord::Base
-  validates :name, uniqueness: true
+  validates_presence_of :name
+  validates_presence_of :quantity
   belongs_to :user
 
   def created_by?(user)

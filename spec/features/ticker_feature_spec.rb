@@ -1,7 +1,7 @@
 feature 'investments' do
 
   context 'no investments have been added' do
-    scenario 'displays a prompt to add a ticker' do
+    xscenario 'displays a prompt to add a ticker' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
       expect(page).to have_content 'Your wallet is empty'
       expect(page).to have_link 'Add ticker'
@@ -9,7 +9,7 @@ feature 'investments' do
   end
 
   context 'adding an investment' do
-    scenario 'prompts user to fill in a form, then displays the new ticker on the index page' do
+    xscenario 'prompts user to fill in a form, then displays the new ticker on the index page' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
       add_investment('AAPL', 100)
       expect(page).to have_content 'Apple Inc.'
@@ -18,7 +18,7 @@ feature 'investments' do
   end
 
   context 'an invalid investment' do
-    scenario 'a duplicate ticker displays an error' do
+    xscenario 'a duplicate ticker displays an error' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
       add_investment('AAPL', 100)
       add_investment('AAPL', 100)
@@ -27,7 +27,7 @@ feature 'investments' do
   end
 
   context 'viewing individual investments' do
-    scenario 'allows a user to view the investment in more detail' do
+    xscenario 'allows a user to view the investment in more detail' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
       add_investment('AAPL', 100)
       click_link 'Apple Inc.'
@@ -36,7 +36,7 @@ feature 'investments' do
   end
 
   context 'editing investments' do
-    scenario 'allows a user to edit an investment' do
+    xscenario 'allows a user to edit an investment' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
       add_investment('AAPL', 100)
       click_link 'Edit'
@@ -48,7 +48,7 @@ feature 'investments' do
   end
 
   context 'deleting investments' do
-    scenario 'allows a user to delete an investment' do
+    xscenario 'allows a user to delete an investment' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
       add_investment('AAPL', 100)
       click_link 'Remove'

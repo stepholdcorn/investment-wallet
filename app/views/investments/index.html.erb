@@ -1,10 +1,12 @@
 <% if user_signed_in? %>
   <% if @investments.any? %>
     <% @investments.each do |investment| %>
-      <h2><%= link_to investment.name, investment_path(investment) %></h2>
-      <h3><%= investment.quantity %></h3>
-      <h3><%= link_to 'Edit', edit_investment_path(investment) %>
-      <h3><%= link_to 'Remove', investment_path(investment), method: :delete %></h3>
+      <% if investment.created_by? current_user %>
+        <h2><%= link_to investment.name, investment_path(investment) %></h2>
+        <h3><%= investment.quantity %></h3>
+        <h3><%= link_to 'Edit', edit_investment_path(investment) %>
+        <h3><%= link_to 'Remove', investment_path(investment), method: :delete %></h3>
+      <% end %>
     <% end %>
   <% else %>
     Your wallet is empty

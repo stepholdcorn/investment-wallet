@@ -8,16 +8,6 @@ feature 'investments' do
     end
   end
 
-  context 'investments have been added' do
-    before { Investment.create name: 'AAPL' }
-
-    scenario 'display investments' do
-      user_sign_up('test@test.com', 'testtest', 'testtest')
-      expect(page).to have_content 'AAPL'
-      expect(page).not_to have_content 'Your wallet is empty'
-    end
-  end
-
   context 'adding an investment' do
     scenario 'prompts user to fill in a form, then displays the new ticker on the index page' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
@@ -28,31 +18,27 @@ feature 'investments' do
   end
 
   context 'an invalid investment' do
-    before { Investment.create(name: 'AAPL', quantity: '100') }
-    
     scenario 'a duplicate ticker displays an error' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
+      add_investment('AAPL', 100)
       add_investment('AAPL', 100)
       expect(page).to have_content 'error'
     end
   end
 
   context 'viewing individual investments' do
-    let!(:aapl){ Investment.create(name: 'AAPL', quantity: '100') }
-
     scenario 'allows a user to view the investment in more detail' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
+      add_investment('AAPL', 100)
       click_link 'AAPL'
       expect(page).to have_content 'Investment: AAPL Quantity: 100'
-      expect(current_path).to eq "/investments/#{aapl.id}"
     end
   end
 
   context 'editing investments' do
-    before { Investment.create(name: 'AAPL', quantity: '100') }
-
     scenario 'allows a user to edit an investment' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
+      add_investment('AAPL', 100)
       click_link 'Edit'
       fill_in 'Quantity', with: '250'
       click_button 'Update'
@@ -62,10 +48,9 @@ feature 'investments' do
   end
 
   context 'deleting investments' do
-    before { Investment.create(name: 'AAPL', quantity: '100') }
-
     scenario 'allows a user to delete an investment' do
       user_sign_up('test@test.com', 'testtest', 'testtest')
+      add_investment('AAPL', 100)
       click_link 'Remove'
       expect(page).not_to have_content 'AAPL 100'
       expect(page).to have_content 'Investment deleted successfully'

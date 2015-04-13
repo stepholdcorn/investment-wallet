@@ -11,6 +11,7 @@ class InvestmentsController < ApplicationController
 
   def create
     @investment = Investment.new(investment_params)
+    @investment.user = current_user
     if @investment.save
       redirect_to investments_path
     else

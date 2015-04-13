@@ -12,7 +12,7 @@ context 'user not signed in and on the homepage' do
 
   it 'does not display a wallet' do
     user_sign_up('test@test.com', 'testtest', 'testtest')
-    add_investment('AAPL', '100')
+    add_investment('AAPL', 100)
     click_link 'Sign out'
     expect(page).not_to have_content 'AAPL 100'
     expect(page).not_to have_link 'Edit'
@@ -36,5 +36,12 @@ context 'user signed in and on the homepage' do
     visit '/'
     expect(page).not_to have_link 'Sign in'
     expect(page).not_to have_link 'Sign up'
+  end
+
+  it 'only displays the current user wallet' do
+    add_investment('AAPL', 100)
+    click_link 'Sign out'
+    user_sign_up('anothertest@test.com', 'testtest', 'testtest')
+    expect(page).not_to have_content 'AAPL 100'
   end
 end

@@ -1,11 +1,11 @@
 <h2>Holding value: $<%= (@investment.quote.ask * @investment.quantity).round(2) %></h2>
-
-<script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
-<script type="text/javascript">
+<input type="hidden" id="symbol" value=<%= @investment.quote.symbol %>>
+<script>
+var symbol = document.getElementById('symbol').value;
 new TradingView.widget({
   "width": 998,
   "height": 610,
-  "symbol": "NASDAQ:AAPL",
+  "symbol": symbol,
   "interval": "D",
   "timezone": "exchange",
   "theme": "Black",

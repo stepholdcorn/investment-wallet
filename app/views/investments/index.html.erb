@@ -3,8 +3,9 @@
     <% @investments.each do |investment| %>
       <% if investment.created_by? current_user %>
         <h2><%= link_to investment.quote.name, investment_path(investment) %>
-        $<%= (investment.quantity * investment.quote.ask).round(2) %>
+        $<%= number_with_precision((investment.quantity * investment.quote.ask), precision: 2, delimiter: ',') %>
         <%= investment.quote.changein_percent %></h2>
+        <p>Units: <%= investment.quantity %></p>
         <h3><%= link_to 'Edit', edit_investment_path(investment) %>
         <%= link_to 'Remove', investment_path(investment), method: :delete %></h3>
       <% end %>

@@ -1,4 +1,4 @@
-<h1><%= @investment.name %></h1>
+<h1><%= @investment.quote.name %></h1>
 <%= form_for @investment do |f| %>
   <%= f.label :quantity %>
   <%= f.text_field :quantity %>

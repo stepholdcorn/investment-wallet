@@ -1,4 +1,6 @@
-<h2>Holding value: $<%= (@investment.quote.ask * @investment.quantity).round(2) %></h2>
+<h2>Holding value: $<%= number_with_precision((@investment.quantity * @investment.quote.ask), precision: 2, delimiter: ',') %></h2>
+<p>Units: <%= @investment.quantity %></p>
+<p><%= link_to 'Edit units', edit_investment_path(@investment) %></p>
 <input type="hidden" id="symbol" value=<%= @investment.quote.symbol %>>
 <script>
 var symbol = document.getElementById('symbol').value;

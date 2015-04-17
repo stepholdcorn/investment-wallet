@@ -5,6 +5,17 @@
 
 An application to view your investment portfolio in one place.
 
+### Technologies Used
+
+* Ruby
+* Javascript
+* HTML
+* CSS
+* Rails
+* RSpec
+* Capybara
+* TradingView Charting
+
 ### Installation
 
 * Install [PostgreSQL](http://www.postgresql.org)
